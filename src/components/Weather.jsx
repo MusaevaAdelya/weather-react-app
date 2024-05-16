@@ -4,6 +4,8 @@ import {
 	formatUnixTime,
 } from '../utils/timeFormat';
 
+import { memo } from 'react';
+
 function Weather({ data }) {
 	const [currentTime, period] = getCurrentTimeAndPeriodForTimezone(
 		data.timezone
@@ -55,4 +57,4 @@ function Weather({ data }) {
 	);
 }
 
-export default Weather;
+export default memo(Weather);

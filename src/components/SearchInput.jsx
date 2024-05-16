@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 function SearchInput({ city, setCity, handleSearch, setIsError }) {
 	return (
 		<form className='search' onSubmit={e => handleSearch(e)}>
@@ -19,4 +21,4 @@ function SearchInput({ city, setCity, handleSearch, setIsError }) {
 	);
 }
 
-export default SearchInput;
+export default memo(SearchInput);
