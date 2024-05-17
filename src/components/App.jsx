@@ -6,6 +6,7 @@ const API_KEY = 'c9ecd88c77676b8eb4080b4374ad2af2';
 
 function App() {
 	const [city, setCity] = useState('');
+	const [isMetric, setIsMetric] = useState(true);
 	const [dataCurrent, setDataCurrent] = useState({});
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
@@ -26,8 +27,10 @@ function App() {
 		try {
 			setIsLoading(true);
 
+			const units = isMetric ? 'metric' : 'imperial';
+
 			const currentData = await sendRequest(
-				`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+				`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=${units}`
 			);
 			setDataCurrent(currentData);
 		} catch (error) {
@@ -44,14 +47,16 @@ function App() {
 			<div className='app-container'>
 				<SearchInput
 					city={city}
+					isMetric={isMetric}
 					setCity={setCity}
+					setIsMetric={setIsMetric}
 					handleSearch={handleSearch}
 					setIsError={setIsError}
 				/>
 				{isLoading && <p className='message'>Loading...</p>}
 				{isError && <p className='message'>{city} is not a city</p>}
 				{Object.keys(dataCurrent).length !== 0 && !isError && (
-					<Weather data={dataCurrent} />
+					<Weather data={dataCurrent} isMetric={isMetric} />
 				)}
 			</div>
 		</main>

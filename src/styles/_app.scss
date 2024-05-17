@@ -56,13 +56,28 @@ main {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-left: 1rem;
 		color: helper.$color-gray;
 		font-size: 2rem;
 		border: none;
 		outline: none;
 		background: transparent;
 		cursor: pointer;
+	}
+
+	&__checkbox-container {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin: 0 1.6rem;
+	}
+
+	&__checkbox {
+	}
+
+	&__checkbox-text {
+		font-size: 1.4rem;
+		font-family: helper.$font-family;
+		color: helper.$color-gray;
 	}
 }
 

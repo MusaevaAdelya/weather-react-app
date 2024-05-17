@@ -6,7 +6,7 @@ import {
 
 import { memo } from 'react';
 
-function Weather({ data }) {
+function Weather({ data, isMetric }) {
 	const [currentTime, period] = getCurrentTimeAndPeriodForTimezone(
 		data.timezone
 	);
@@ -22,17 +22,21 @@ function Weather({ data }) {
 						// src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
 						alt=''
 					/>
-					<span className='current__temp'>{data.main.temp}°C</span>
+					<span className='current__temp'>
+						{data.main.temp}
+						{isMetric ? '°C' : '°F'}
+					</span>
 				</p>
 				<p className='current__atmosphere'>
 					{data.weather[0].description}
 				</p>
 				<p className='current__info'>
-					Feels like {data.main.feels_like}°C
+					Feels like {data.main.feels_like}
+					{isMetric ? '°C' : '°F'}
 				</p>
 				<p className='current__info'>
 					<i className='bi bi-wind color-accent'></i>{' '}
-					{data.wind.speed} m/s{' '}
+					{data.wind.speed} {isMetric ? 'm/s' : 'mph'}{' '}
 					<i
 						className='bi bi-droplet color-accent'
 						style={{ marginLeft: '1rem' }}
